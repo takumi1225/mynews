@@ -18,25 +18,25 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="title">氏名(name)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="name" value="{{ old('title') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="title">性別(gender)</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="gender" value="{{ old('title') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="title">趣味(hobby</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="hobby" value="{{ old('title') }}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="body">自己紹介欄</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
+                            <textarea class="form-control" name="introduction" rows="20">{{ old('body') }}</textarea>
                         </div>
                     </div>
                     {{ csrf_field() }}
