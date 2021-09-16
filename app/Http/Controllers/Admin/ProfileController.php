@@ -31,13 +31,36 @@ public function create(Request $request)
       return redirect('admin/profile/create');
     }
 
-public function edit()
+public function edit(Request $request)
     {
-    return view('admin.profile.edit');
+      $profile = Profile::find($request->id);
+      if (empty($profile)) {
+        abort(404);    
+      }
+    return view('admin.profile.edit',['profile_form' => $profile]);
     } 
 
-public function update()
+public function update(Request $request)
     {
-    return redirect('admin/profile/edit');
+    // Validationをかける
+    $this->validate($request, Profile::$rules);
+    // Profile Modelからデータを取得する
+    $profile = Profile::find($request->id);
+    // 送信されてきたフォームデータを格納する
+    $profile_form = $request->all();
+    if (isset($profile_form['image'])) {
+      $path = $request->file('image')->store('public/image');
+      $profile->image_path = basename($path);
+      unset($profile_form['image']);
+    } elseif (0 == strcmp($request->remove, 'true')) {
+      $profile->image_path = null;
     }
+    unset($profile_form['_token']);
+    unset($profile_form['remove']);
+
+    // 該当するデータを上書きして保存する
+    $profile->fill($profile_form)->save();
+    }
+
+   
 }
